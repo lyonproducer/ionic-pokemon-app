@@ -1,0 +1,47 @@
+
+
+ion-toolbar {
+  background-image: url(../../../../assets/images/background-header.png);
+  background-size: cover;
+  background-repeat: none;
+  height: 234px;
+
+  padding: 16px;
+
+  flex-direction: column;
+  display: flex;
+}
+
+
+.header-title {
+  margin-top: 60px;
+
+  h3 {
+    width: 65%;
+  }
+}
+
+.search-container {
+  margin-top: 30px;
+
+  ion-item {
+    --background: transparent;
+    width: 80%;
+    --padding-start: 0px;
+  }
+
+  ion-input {
+    --background: transparent;
+    --color: white;
+    --highlight-color-focused: white;
+    --border-color: white;
+  }
+
+  .container-filter {
+    width: 20%;
+  }
+
+  ion-icon {
+    font-size: 27px;
+  }
+}
