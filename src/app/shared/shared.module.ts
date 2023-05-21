@@ -11,7 +11,7 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
     PokemonCardComponent
   ],
   imports: [ CommonModule, IonicModule, FormsModule, ReactiveFormsModule ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, PokemonCardComponent],
   providers: [],
 })
 export class SharedModule {}

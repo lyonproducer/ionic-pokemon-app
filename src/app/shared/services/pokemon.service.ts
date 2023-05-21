@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
-import { POKEAPI_URL, URI } from '../contants/contants';
+import { URI } from '../contants/contants';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Pokemon } from '../interfaces/pokemon.model';
+import { List } from '../interfaces/list.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
 
-
-  uri = POKEAPI_URL;
-
   constructor(private http: HttpClient) { }
 
   getPokemonList() {
     const url = `${environment.apiUrl}${URI.GET_POKEMON_LIST}`;
-    return this.http.get(url);
+    return this.http.get<List>(url);
   }
 
-  register(id: number) {
-    const url = `${environment.apiUrl}${URI.GET_POKEMON_DETAIL}`.replace(':id', id.toString());
-    return this.http.get(url);
+  getPokemonById(url: string) {
+    return this.http.get<Pokemon>(url);
   }
 }

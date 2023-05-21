@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PokemonList } from '../../interfaces/interfaces';
+import { Result } from '../../interfaces/list.model';
+import { PokemonService } from '../../services/pokemon.service';
+import { Pokemon } from '../../interfaces/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -8,9 +10,27 @@ import { PokemonList } from '../../interfaces/interfaces';
 })
 export class PokemonCardComponent  implements OnInit {
 
-  @Input() pokemon!: PokemonList;
-  constructor() { }
+  @Input() pokemonInput!: Result;
 
-  ngOnInit() {}
+  pokemonData!: Pokemon;
+  
+  constructor(
+    private pokemonService: PokemonService
+  ) { }
+
+  ngOnInit() {
+    this.pokemonService.getPokemonById(this.pokemonInput.url).subscribe(
+      {
+        next: (res: Pokemon) => {
+          console.log('res ', res);
+          this.pokemonData = res;
+        },
+        error: (e) => {
+          console.log('error ', e);
+        },
+        complete: () => console.info('complete') 
+      }
+    );
+  }
 
 }

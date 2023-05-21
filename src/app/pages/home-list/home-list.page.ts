@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { List, Result } from 'src/app/shared/interfaces/list.model';
+import { PokemonService } from 'src/app/shared/services/pokemon.service';
 
 @Component({
   selector: 'app-home-list',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeListPage implements OnInit {
 
-  constructor() { }
+  pokemonList :Result[] = [];
+
+  constructor(private pokemonService: PokemonService) { }
 
   ngOnInit() {
+    this.pokemonService.getPokemonList().subscribe(
+      {
+        next: (res: List) => {
+          console.log('res ', res);
+          this.pokemonList = res.results;
+          
+        },
+        error: (e) => {
+          console.log('error ', e);
+        },
+        complete: () => console.info('complete') 
+      }
+    );
   }
 
 }

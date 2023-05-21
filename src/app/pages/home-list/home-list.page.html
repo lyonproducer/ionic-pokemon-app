@@ -1,9 +1,10 @@
 <app-header></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home-list</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+
+  <ng-container *ngFor="let pokemon of pokemonList">
+    <app-pokemon-card [pokemonInput]="pokemon"></app-pokemon-card>
+  </ng-container>
+  
+
 </ion-content>

@@ -1,22 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-
-    <div class="header-title">
-      <h3 class="text-white">
-        What pokemon are you looking for?
-      </h3>
-    </div>
-
-    <div class="search-container d-flex">
-      <ion-item>
-        <ion-input label="Search Pokemon" labelPlacement="floating" placeholder="Search Pokemon"></ion-input>
-        <ion-icon name="search-outline" color="light"></ion-icon>
-      </ion-item>
-      
-      <div class="container-filter d-flex ion-justify-content-center ion-align-items-center ion-margin-start">
-        <ion-icon name="filter-outline" color="light"></ion-icon>
+<div class="background-header">
+  <ion-header class="ion-no-border">
+    <ion-toolbar mode="md">
+      <div class="header-title">
+        <h3 class="text-white">What pokemon are you looking for?</h3>
       </div>
-    </div>
-  
-  </ion-toolbar>
-</ion-header>
+
+      <div class="search-container d-flex">
+        <ion-item>
+          <ion-input
+            label="Search Pokemon"
+            labelPlacement="floating"
+            placeholder="Search Pokemon"
+          ></ion-input>
+          <ion-icon name="search-outline" color="light"></ion-icon>
+        </ion-item>
+
+        <div
+          class="container-filter d-flex ion-justify-content-center ion-align-items-center ion-margin-start"
+        >
+          <ion-icon name="filter-outline" color="light"></ion-icon>
+        </div>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+</div>

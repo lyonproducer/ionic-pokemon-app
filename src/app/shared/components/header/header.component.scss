@@ -1,13 +1,17 @@
 
+.background-header {
+  background-image: url(../../../../assets/images/background-header.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 254px;
+}
+
 
 ion-toolbar {
-  background-image: url(../../../../assets/images/background-header.png);
-  background-size: cover;
-  background-repeat: none;
-  height: 234px;
-
+  --background: transparent;
+  height: 100%;
   padding: 16px;
-
   flex-direction: column;
   display: flex;
 }
@@ -28,6 +32,7 @@ ion-toolbar {
     --background: transparent;
     width: 80%;
     --padding-start: 0px;
+    border-bottom: 1px solid white;
   }
 
   ion-input {
@@ -35,6 +40,9 @@ ion-toolbar {
     --color: white;
     --highlight-color-focused: white;
     --border-color: white;
+    --border-width: 2px;
+    --highlight-color-valid: white;
+    --padding-start: 10px;
   }
 
   .container-filter {
