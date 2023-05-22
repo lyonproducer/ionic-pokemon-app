@@ -33,4 +33,9 @@ export class PokemonCardComponent  implements OnInit {
     );
   }
 
+  getId() {
+    const array = this.pokemonInput.url.split('/');
+    return array[array.length - 2];
+  }
+
 }
