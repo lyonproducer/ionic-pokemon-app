@@ -11,6 +11,9 @@
             label="Search Pokemon"
             labelPlacement="floating"
             placeholder="Search Pokemon"
+            debounce="500"
+            [(ngModel)]="search"
+            (ionInput)="changeSearch()"
           ></ion-input>
           <ion-icon name="search-outline" color="light"></ion-icon>
         </ion-item>

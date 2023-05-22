@@ -24,13 +24,11 @@ export class PokemonCardComponent  implements OnInit {
     this.pokemonService.getPokemonByUrl(this.pokemonInput.url).subscribe(
       {
         next: (res: Pokemon) => {
-          //console.log('res ', res);
           this.pokemonData = res;
         },
         error: (e) => {
           console.log('error ', e);
-        },
-        complete: () => console.info('complete') 
+        }
       }
     );
   }

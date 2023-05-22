@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { lastValueFrom } from 'rxjs';
 import { Pokemon } from 'src/app/shared/interfaces/pokemon.model';
 import { PokemonService } from 'src/app/shared/services/pokemon.service';
@@ -16,14 +16,16 @@ export class PokemonDetailPage implements OnInit {
   pokemon!: Pokemon;
   segment = 'stats';
 
+  loading!: HTMLIonLoadingElement;
+
   constructor(
     private pokemonService: PokemonService,
     private activatedroute: ActivatedRoute,
-    private navController: NavController
+    private navController: NavController,
+    private loadingCtrl: LoadingController
   ) { 
     this.activatedroute.paramMap.subscribe(
       (params: any)=> {
-        console.log(params);
         this.id = params.params.id;
       }
     )
@@ -33,7 +35,15 @@ export class PokemonDetailPage implements OnInit {
     this.getPokemon(this.id);
   }
 
-  getPokemon(url: string) {
+
+
+  async getPokemon(url: string) {
+
+    this.loading = await this.loadingCtrl.create({
+      message: 'Loading..'
+    });
+    await this.loading.present();
+
     this.pokemonService.getPokemonById(url).subscribe(
       {
         next: (res: Pokemon) => {
@@ -46,9 +56,10 @@ export class PokemonDetailPage implements OnInit {
         },
         error: (e) => {
           console.log('error ', e);
+          this.loading.dismiss();
         },
         complete: () =>{
-
+          this.loadingCtrl.dismiss();
         }
       }
     );

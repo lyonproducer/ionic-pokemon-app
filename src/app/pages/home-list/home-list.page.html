@@ -1,12 +1,19 @@
-<app-header></app-header>
+<app-header (emitResult)="onHandleSearch($event)"></app-header>
 
 <ion-content>
+
+
+  <ion-card *ngIf="searchMode">
+    <ion-card-content>
+      {{pokemonList.length}} Pokemones encontrados.
+    </ion-card-content>
+  </ion-card>
 
   <ng-container *ngFor="let pokemon of pokemonList">
     <app-pokemon-card [pokemonInput]="pokemon"></app-pokemon-card>
   </ng-container>
   
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" *ngIf="!searchMode">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
