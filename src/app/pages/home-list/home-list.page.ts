@@ -35,7 +35,7 @@ export class HomeListPage implements OnInit {
     this.pokemonService.getPokemonList(params).subscribe(
       {
         next: (res: List) => {
-          console.log('res ', res);
+          //console.log('res ', res);
           res.results.forEach(pokemon => {
             this.pokemonList.push(pokemon);
           });
@@ -59,7 +59,7 @@ export class HomeListPage implements OnInit {
 
   onHandleSearch(event: any) {
     
-    console.log('event ', event)
+    //console.log('event ', event)
 
     if(event === '') {
       this.limit = 10;
@@ -82,12 +82,12 @@ export class HomeListPage implements OnInit {
     this.pokemonService.getPokemonList(params).subscribe(
       {
         next: (res: List) => {
-          console.log('res ', res);
+          //console.log('res ', res);
           res.results.forEach(pokemon => {
             this.pokemonList.push(pokemon);
           });
           this.pokemonList = this.pokemonList.filter(el=> el.name.indexOf(event) > -1);
-          console.log('filtered ', this.pokemonList);
+          //console.log('filtered ', this.pokemonList);
         },
         error: (e) => {
           console.log('error ', e);

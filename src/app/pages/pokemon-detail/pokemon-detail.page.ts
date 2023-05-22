@@ -47,7 +47,7 @@ export class PokemonDetailPage implements OnInit {
     this.pokemonService.getPokemonById(url).subscribe(
       {
         next: (res: Pokemon) => {
-          console.log('res ', res);
+          //console.log('res ', res);
           this.pokemon = res;
 
           this.pokemon.moves.forEach(async element => {
