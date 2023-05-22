@@ -1,6 +1,6 @@
 
 
-<ion-card mode="ios">
+<ion-card mode="ios" (click)="goPokemon()">
 
   <div class="img-container">
     <img *ngIf="pokemonData?.sprites" [src]="pokemonData.sprites.other.home.front_default || ''" alt="">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="d-flex">
-      <ion-badge *ngFor="let type of pokemonData.types">
+      <ion-badge class="type {{type.type.name}}" *ngFor="let type of pokemonData.types">
         {{type.type.name}}
       </ion-badge>
     </div>

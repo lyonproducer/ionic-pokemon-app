@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import { List, Result } from 'src/app/shared/interfaces/list.model';
 import { PokemonService } from 'src/app/shared/services/pokemon.service';
 
@@ -10,23 +12,45 @@ import { PokemonService } from 'src/app/shared/services/pokemon.service';
 export class HomeListPage implements OnInit {
 
   pokemonList :Result[] = [];
+  offset = 0;
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(
+    private pokemonService: PokemonService
+  ) { }
 
   ngOnInit() {
-    this.pokemonService.getPokemonList().subscribe(
+    this.getPokemons();
+  }
+
+  getPokemons(ev?: InfiniteScrollCustomEvent) {
+ 
+    const params = {
+      limit: 5,
+      offset: this.offset
+    }
+    
+    this.pokemonService.getPokemonList(params).subscribe(
       {
         next: (res: List) => {
           console.log('res ', res);
-          this.pokemonList = res.results;
-          
+          res.results.forEach(pokemon => {
+            this.pokemonList.push(pokemon);
+          });
         },
         error: (e) => {
           console.log('error ', e);
         },
-        complete: () => console.info('complete') 
+        complete: () =>{
+          this.offset = this.pokemonList.length;
+          if(ev) {
+            ev.target.complete();
+          }
+        }
       }
     );
   }
 
+  onIonInfinite(event: any) {
+    this.getPokemons(event);
+  }
 }

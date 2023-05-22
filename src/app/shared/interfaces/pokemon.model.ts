@@ -66,6 +66,7 @@ export interface Version2 {
 }
 
 export interface Mfe {
+  [x: string]: any
   move: Move
   version_group_details: VersionGroupDetail[]
 }
